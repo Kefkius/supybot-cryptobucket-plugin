@@ -68,6 +68,20 @@ class CryptoBucket(callbacks.Plugin):
 			% (data['data']['username'], data['data']['first_name'],
 			data['data']['last_name'], data['data']['username']))
     user = wrap(user, ['something'])
+    
+    def status(self, irc, msg, args, username):
+		"""<username>
+		
+		Get the last status posted by <username>"""
+		params = 't=m&q=' + username
+		data = self._getapi(params)
+		try:
+			last_status = data['data'][0]
+		except:
+			irc.error("Could not retrieve status info.")
+		irc.reply( ("By %s at %s: %s" % (username, last_status['time'], last_status['message'])).replace('\r\n', ''))
+    status = wrap(status, ['something'])
+		
 
 
 Class = CryptoBucket
