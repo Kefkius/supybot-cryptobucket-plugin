@@ -1,0 +1,6 @@
+backup
+build
+test-data
+test-conf
+*.mo
+*.pyc
