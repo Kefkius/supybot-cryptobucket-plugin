@@ -79,6 +79,7 @@ class CryptoBucket(callbacks.Plugin):
 			last_status = data['data'][0]
 		except:
 			irc.error("Could not retrieve status info.")
+			return
 		irc.reply( ("By %s at %s: %s" % (username, last_status['time'], last_status['message'])).replace('\r\n', ''))
     status = wrap(status, ['something'])
 		
